@@ -1,44 +1,18 @@
-# SPBU-timetable-synchronisation
-Synchronization of SPBU Timetable with Google calendar.
+SPBU-timetable-synchronisation
+---
+Synchronization of SPBU Timetable with Google calendar via Google Drive and Google Apps Scripts.
 
 
-Начало работы: 
+# Getting started
 
-Подготовка среды для скрипта.
+- Create a folder on your GDrive for saving and converting .xlsx from [site](https://timetable.spbu.ru/MATH/).
+- Create a Google Apps Scripts project. 
+- Create a Google calendar.
+- Copy code from script.gs to your project.
+- Go to project settings and turn on appsscript.json.
+- Copy all from appsscript.json from this repo to your json in your project.
+- Add Folder_ID and CALENDAR_ID in the script properties.
+- Change variable TimeTableFile_URL_withoutDate in the script to the link to download the schedule file for your group. This is the same as in the example, except for the studentGroupId=XXXXXX.
+- Add script triggers to run script automaticly.
 
-1) Папку на диске для сохранения и конвертирования в ней табличек с раписанием с сайта вуза.
-2) Создать новый проект в Google Apps Scripts
-3) Создать и подключить к нему гугл календарь (лучше всего пустой, так как скрипт может стереть что-то нужное)
-4) Скопировать код из файла Код.gs 
-5) Перейти к следующему этапу.
-
-Настройка скрипта.
-
-Необходимо поменять переменные в Global var Section.
-1) Указать папку для скачивания excel таблиц с timetable
-2) Указать id гугл календаря, в который перенесётся расписание. (Лучше всего создать чистый календарь, чтобы расписание можно было скрывать и оно не смешивалось с другими событиями основного календаря)
-3) Указать ссылку на скачивание таблицы своей группы, она идентична той, которая в образце, главное вырезать из неё всё лишнее, по идее она получится почти такая же, за исключением studentGroupId.
-4) Далее можно настроить триггеры для автоматического запуска скрипта, либо обновлять его вручную.
-
-
-В принципе с этого момента уже должно всё работать. Но это говнокод довольно сомнительного качества, который можно и даже нужно доработать, так как встречаются мелкие баги, полохая оптимизация. 
-
-Чтобы облегчить чтение этого высера, держите краткое описание сего говнокодинга:
-
-1) Сперва смотрим дату для того, чтобы понять в какой части учебного года находится начало выполнения скрипта, маленькая оптимизация, чтобы получать и обновлять расписание с какой-то даты по конец текущего семестра.
-
-2) Скачиваем с сайта таблички
-
-3) Конверитуем их в гугл таблички 
-
-4) Считываем данные, создаём для каждого занятия событие в календаре и заполняем.
-
-Кароч, тут всё самое важное закомментировано, читайте говнокод перед запуском. 
-Самое главное, чтобы у вас была папка и календарь и их id были тут, потому что если вы запустите это с моими id то есть вероятность сломать всё мне, хотя восстановить будет нетрудно, да и защита от долбоёба там по идее какая-то есть.
-
-Функция конвертации всегда конвертирует все xlsx в вашей папке в gsheet затем удаляет все xlsx. Будьте внимательны, если нужны xlsx,то закомментируйте там одну строку и xlsx останутся вместе с gsheet.
-Функции main_script(), GetDataFromSPBUTimetable(), UploadDataToCalendar(), convert(), writeFile(), SetCalendar() можно менять под свои задачи путём комментирования и декомментирования каких-то строк, обращайте внимания на подписи.
-Функции writeFile(), SetCalendar(), convert() можно сильно оптимизировать, если есть желание.
-
-Удачи в разборе этого говнокода :)
-
+ Enjoy :)
